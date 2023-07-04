@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Processing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        select,
+        input[type="number"],
+        input[type="file"],
+        input[type="submit"] {
+            margin-top: 5px;
+            padding: 8px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .image-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .image-section img {
+            margin: 10px;
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Processing</h1>
+
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*"><br>
+        <label>Size:</label>
+        <input type="number" name="size" min="1" required><br>
+        <label>Color (B):</label>
+        <input type="number" name="colorB" min="0" max="255" required><br>
+        <label>Color (G):</label>
+        <input type="number" name="colorG" min="0" max="255" required><br>
+        <label>Color (R):</label>
+        <input type="number" name="colorR" min="0" max="255" required><br>
+        <label>Position:</label>
+        <select name="position">
+            <option value="top_left">Top Left</option>
+            <option value="top_center">Top Center</option>
+            <option value="top_right">Top Right</option>
+            <option value="center_left">Center Left</option>
+            <option value="center">Center</option>
+            <option value="center_right">Center Right</option>
+            <option value="bottom_left">Bottom Left</option>
+            <option value="bottom_center">Bottom Center</option>
+            <option value="bottom_right">Bottom Right</option>
+        </select><br>
+        <input type="submit" value="Process">
+    </form>
+<center>
+    {% if image_path %}
+        <h2>Original Image</h2>
+        <img src="{{ image_path }}" width="500">
+
+        {% if output_path %}
+            <h2>Processed Image</h2>
+            <img src="{{ output_path }}" width="500">
+        {% endif %}
+
+        {% if cropped_image_path %}
+            <h2>Cropped Image</h2>
+            <img src="{{ cropped_image_path }}" width="500">
+        {% endif %}
+    {% endif %}</center>
+</body>
+</html>
